@@ -105,6 +105,32 @@ class PepoCampaigns
         return $result;
     }
 
+    /**
+     * Send Transactional Email
+     * @link https://know.pepocampaigns.com/articles/managing-transactional/#send-transactional-email
+     *
+     * @param string $email Email
+     * @param string $template Template          
+     * @param array $email_vars Associative array of email variables
+     * @return string Raw response from API
+     */ 
+    public function send_transactional_email($email, $template, $email_vars){
+        $api_url = '/api/v1/send/';
+        $request_time = $this->get_request_time();
+        $delimiter = '::';
+        $signature = $this->generate_signature($this->pepo_secret, $api_url.$delimiter.$request_time);
+        $fields = array(
+            'request-time' => $request_time,
+            'signature' => $signature,
+            'api-key' => $this->pepo_key,
+            'email' => $email,
+            'template' => $template,
+            'email_vars' => json_encode($email_vars)
+        );
+        $result = $this->execute_curl($api_url, $fields);
+        return $result;       
+    }
+
     private function execute_curl($api_url, $fields){
         $fields_string = http_build_query($fields);
         try {

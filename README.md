@@ -65,6 +65,18 @@ $pepo_campaigns->change_user_status(array(
 ));
 ```
 
+[Send Transactional Email](https://know.pepocampaigns.com/articles/managing-transactional/#send-transactional-email)
+
+```php
+$pepo_campaigns->send_transactional_email('vpuui.skbbx21@gmail.com', 'welcome', 
+	array(
+		'a' => 1, 
+		'b' => 2, 
+		'c' => array('d' => 3, 'e' => 4)
+	)
+);
+```
+
 ## License
 
 [MIT License](LICENSE)
