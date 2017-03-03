@@ -7,6 +7,7 @@ PHP client for PepoCampaigns REST API. For details about the API, documentation 
 
 * PHP 5.4 or higher
 * openssl 1.0.1
+* TLS 1.2 protocol is recommended
 
 ## Usage
 
