@@ -5,7 +5,7 @@ class PepoCampaigns
     private $pepo_secret;
     private $pepo_url;
 
-    function __construct($keys){
+    public function __construct($keys){
         $this->pepo_key = $keys['key'];
         $this->pepo_secret = $keys['secret'];
         $this->pepo_url = 'https://pepocampaigns.com';
@@ -89,8 +89,8 @@ class PepoCampaigns
      * @param array $data Associative array with 'email' and 'type' key 
      * @return string Raw response from API
      */     
-    public function change_user_status($data){
-        $api_url = '/api/v1/list/'.$this->list.'/remove-contact/';
+    public function change_user_status($list_id, $data){
+        $api_url = '/api/v1/list/'.$list_id.'/change-status/';
         $request_time = $this->get_request_time();
         $delimiter = '::';
         $signature = $this->generate_signature($this->pepo_secret, $api_url.$delimiter.$request_time);
